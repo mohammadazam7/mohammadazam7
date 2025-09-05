@@ -5,7 +5,7 @@
 
 - 🌱 I’m currently learning **Django, Flask**
 
-- 👯 I’m looking to collaborate on **Sign Language Detection System**
+- 👯 I’m looking to collaborate on **AI Multimodal Assistant**
 
 - 💬 Ask me about **React, Machine Learning**
 
