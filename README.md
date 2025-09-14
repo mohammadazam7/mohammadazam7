@@ -1,9 +1,9 @@
 <h1 align="center">Hi 👋, I'm Mohammad Azam</h1>
 <h3 align="center">A passionate Data Scientist</h3>
 
-- 🔭 I’m currently working on **Credit Card Comparison Analysis**
+- 🔭 I’m currently working on **AI Multimodal Assistant*
 
-- 🌱 I’m currently learning **Django, Flask**
+- 🌱 I’m currently learning **Docker, Kubernetes and Transfoemers (NLP)**
 
 - 👯 I’m looking to collaborate on **AI Multimodal Assistant**
 
