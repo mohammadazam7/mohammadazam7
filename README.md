@@ -3,7 +3,7 @@
 
 - 🔭 I’m currently working on **AI Multimodal Assistant*
 
-- 🌱 I’m currently learning **Docker, Kubernetes and Transfoemers (NLP)**
+- 🌱 I’m currently learning **Docker, Kubernetes and Transformers (NLP)**
 
 - 👯 I’m looking to collaborate on **AI Multimodal Assistant**
 
