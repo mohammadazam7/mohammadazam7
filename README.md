@@ -16,6 +16,14 @@ Data & Software Engineer with 4 years of experience across data engineering, ana
 - **Now:** Data Engineer, Analytics & BI at **FGF Brands** (Jan 2026 – Present)
 - **Education:** Master of Applied Computing (AI Stream), **University of Windsor** (Aug 2026)
 
+### Experience
+
+| Role | Company | When |
+|---|---|---|
+| Data Engineer, Analytics & BI | FGF Brands · North York, ON | Jan 2026 – Present |
+| Data & Software Engineer | Konarak Global Services · Uttarakhand, India | Nov 2021 – Nov 2024 |
+| AI/ML Engineer Intern | Midas Consulting · Noida, India | Jul 2021 – Oct 2021 |
+
 ### Impact highlights
 
 | Result | Where |
@@ -29,12 +37,15 @@ Data & Software Engineer with 4 years of experience across data engineering, ana
 
 ### Featured projects
 
+Currently building the NYC Taxi Data Lake and the next version of the AI Multimodal Assistant in the open. Follow along in the commit history.
+
+
 | Project | What it does | Stack |
 |---|---|---|
-| **NYC Taxi Data Lake on AWS** | Batch pipeline ingesting ~3M rows/month into an S3 data lake, PySpark Glue jobs, Redshift star schema, data-quality alerts | Python, PySpark, AWS Glue, S3, Athena, Redshift |
+| [**NYC Taxi Data Lake on AWS**](https://github.com/mohammadazam7/nyc-taxi-data-lake) | Batch pipeline ingesting ~3M rows/month into an S3 data lake, PySpark Glue jobs, Redshift star schema, data-quality alerts | Python, PySpark, AWS Glue, S3, Athena, Redshift |
 | [**AI Multimodal Assistant**](https://github.com/mohammadazam7/ai_multimodal_assistant) | Real-time object detection on live camera feeds under 60 ms, +35% throughput, 8 concurrent streams on Kubernetes | Python, FastAPI, React, PyTorch, OpenCV, Docker, Kubernetes |
 | [**Credify**](https://github.com/mohammadazam7/Credify) | Compares credit cards across Canadian and U.S. banks with multi-criteria search under 200 ms | Java, Spring Boot, React, MySQL, Selenium |
-| **Dental Inventory Management System** | Django REST APIs for stock tracking and reorder alerts, automated procurement, React dashboard | Python, Django, React, MySQL, Docker |
+| [**Dental Inventory Management System**](https://github.com/Akshat-31/Dental-Inventory-System) | Django REST APIs for stock tracking and reorder alerts, automated procurement, React dashboard | Python, Django, React, MySQL, Docker |
 
 ### Tech stack
 
