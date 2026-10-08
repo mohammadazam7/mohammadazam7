@@ -13,7 +13,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230b0b0d'/%3E%3Ctext x='32' y='45' font-family='Impact,Arial Narrow,sans-serif' font-size='34' fill='%23e50914' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: a streaming service where the catalog is one person. Intro sting → profile gate → billboard → rails of tiles → title modals with seasons and episodes. Single dark world by design. */
 :root{
@@ -25,6 +25,7 @@
   --brand:#e50914;     /* wordmark red */
   --p:#f5a524;         /* active profile color, set by script */
   --f-display:"Bebas Neue", "Oswald", Impact, "Arial Narrow", sans-serif;
+  --f-brand:"Anton", "Bebas Neue", Impact, "Arial Narrow Bold", sans-serif;
   --f-body:"Figtree", "Segoe UI", system-ui, sans-serif;
   --f-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
   --gut:max(16px,4vw);
@@ -42,8 +43,10 @@ a{color:inherit}
 /* ---------- intro sting ---------- */
 .intro{position:fixed;inset:0;z-index:100;background:#000;display:grid;place-items:center;overflow:hidden;cursor:pointer}
 .stage{position:relative;z-index:2;display:grid;justify-items:center;gap:clamp(28px,5vh,56px)}
-.word{display:flex;align-items:center;font:400 clamp(54px,10vw,160px)/1 var(--f-display);color:var(--brand);letter-spacing:.005em;max-width:calc(100vw - 32px);white-space:nowrap;filter:drop-shadow(0 6px 24px rgba(229,9,20,.35))}
-.word span{display:inline-block;transform:scaleY(var(--s,1));transform-origin:50% 50%}
+.word{display:flex;align-items:flex-start;font:400 clamp(50px,9.5vw,150px)/1 var(--f-brand);color:var(--brand);letter-spacing:-.005em;max-width:calc(100vw - 32px);white-space:nowrap;filter:drop-shadow(0 6px 24px rgba(229,9,20,.35))}
+.word span{display:inline-block;transform:scaleY(var(--s,1));transform-origin:50% 0}
+.logo span{display:inline-block;transform:scaleY(var(--s,1));transform-origin:50% 0}
+.logo .sp,.word .sp{width:.22em}
 .word .sp{width:.22em}
 .intro.play .word{animation:sting 3s cubic-bezier(.65,0,.25,1) forwards}
 @keyframes sting{0%{transform:scale(1)}12%{transform:scale(.94)}20%{transform:scale(1.02)}30%{transform:scale(.97)}38%{transform:scale(1.03)}72%{transform:scale(1.08);opacity:1;filter:drop-shadow(0 6px 24px rgba(229,9,20,.35))}100%{transform:scale(16);opacity:0;filter:blur(6px)}}
@@ -80,7 +83,7 @@ a{color:inherit}
 /* ---------- nav ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:clamp(16px,3vw,36px);padding:calc(14px + env(safe-area-inset-top,0px)) var(--gut) 14px;background:linear-gradient(#000c,transparent);transition:background .3s}
 .nav.solid{background:#0b0b0d;box-shadow:0 1px 0 var(--edge)}
-.logo{font:400 30px/1 var(--f-display);color:var(--brand);letter-spacing:.03em;text-decoration:none;white-space:nowrap;background:none;border:0;padding:0;cursor:pointer}
+.logo{display:inline-flex;align-items:flex-start;font:400 27px/1 var(--f-brand);color:var(--brand);letter-spacing:0;padding-bottom:6px;text-decoration:none;white-space:nowrap;background:none;border:0;padding:0;cursor:pointer}
 .nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
 .nav ul button{background:none;border:0;padding:4px 0;cursor:pointer;color:#ddd;font-size:15px}
 .nav ul button:hover{color:#fff}
@@ -754,7 +757,9 @@ let introDone=false, playing=false;
 function endIntro(){if(introDone)return;introDone=true;intro.remove();
   const h=(location.hash||'').slice(1); if(PROFILES[h]) enter(h); else {who.hidden=false;setTimeout(()=>$('.prof').focus({preventScroll:true}),50);}}
 const NAME='MOHAMMAD AZAM', letters=[...NAME].filter(c=>c!==' ').length; let li=0;
-$('#word').innerHTML=[...NAME].map(ch=>{if(ch===' ')return '<span class="sp"></span>';const d=(li++-(letters-1)/2)/((letters-1)/2);return `<span aria-hidden="true" style="--s:${(1+.42*d*d).toFixed(3)}">${ch}</span>`;}).join('');
+function archName(k){let i=0;return [...NAME].map(ch=>{if(ch===' ')return '<span class="sp"></span>';const d=(i++-(letters-1)/2)/((letters-1)/2);return `<span aria-hidden="true" style="--s:${(1+k*d*d).toFixed(3)}">${ch}</span>`;}).join('');}
+$("#word").innerHTML=archName(.16);
+$$('.logo').forEach(l=>{l.setAttribute('aria-label','Mohammad Azam, home');l.innerHTML=archName(.16);});
 const scol=['#e50914','#b20710','#ff3b47','#7a0410','#f5a524','#36c2c9','#9a7cff','#ffffff'];
 $('#streaks').innerHTML=[...Array(30)].map((_,i)=>`<i style="background:${scol[(i*5)%scol.length]};animation-delay:${(Math.abs(i-15)*.012).toFixed(3)}s"></i>`).join('');
 
