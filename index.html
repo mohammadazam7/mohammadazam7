@@ -264,6 +264,74 @@ main{position:relative;z-index:3;margin-top:clamp(-90px,-9vh,-56px);display:grid
 
 footer{padding:24px var(--gut) 40px;color:var(--mute);font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--edge)}
 footer button{background:none;border:0;color:var(--mute);text-decoration:underline;cursor:pointer;padding:0}
+
+/* ===== 3D layer ===== */
+/* hero poster wall */
+.wall3d{position:absolute;inset:0;overflow:hidden;pointer-events:none;perspective:1400px;perspective-origin:70% 40%}
+.wall-plane{position:absolute;top:-30%;right:-12%;width:78%;height:170%;display:flex;gap:14px;transform-style:preserve-3d;
+  transform:rotateX(calc(26deg + var(--wy,0deg))) rotateY(calc(-18deg + var(--wx,0deg))) rotateZ(9deg);transition:transform .6s cubic-bezier(.2,.8,.2,1);opacity:.85}
+.wall-col{flex:1;display:flex;flex-direction:column;gap:14px;animation:wallUp 60s linear infinite;will-change:transform}
+.wall-col:nth-child(even){animation-name:wallDown;animation-duration:72s}
+.wall-col:nth-child(3n){animation-duration:84s}
+@keyframes wallUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes wallDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+.wall-col .poster{position:relative;flex:none;aspect-ratio:5/4;border-radius:6px;overflow:hidden;box-shadow:0 18px 40px -16px #000}
+.wall-col .poster .art .t{font-size:clamp(11px,1vw,15px)}
+.bill.has-wall #bg{opacity:.18}
+.bill.has-wall::after{background:linear-gradient(90deg,#0b0b0d 0%,#0b0b0df2 30%,#0b0b0d99 52%,#0b0b0d33 75%,transparent 100%),linear-gradient(0deg,var(--void) 3%,transparent 45%),linear-gradient(180deg,#0b0b0dcc 0%,transparent 22%)}
+@media (max-width:820px){.wall-plane{right:-40%;width:130%;opacity:.5}.bill.has-wall::after{background:linear-gradient(0deg,var(--void) 22%,#0b0b0dcc 60%,#0b0b0d88)}}
+@media (prefers-reduced-motion:reduce){.wall-col{animation:none}}
+
+/* tile tilt + glare */
+.rail{perspective:900px}
+.tile,.top .card{transform-style:preserve-3d;will-change:transform}
+.tile.tilt,.top.tilt .card{transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(1.07);transition:transform .08s linear,box-shadow .3s,filter .3s}
+.tile::after,.top .card::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(60% 70% at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.28),transparent 60%);mix-blend-mode:soft-light}
+.tile.tilt::after,.top.tilt .card::after{opacity:1}
+.tile .art .t{transform:translateZ(30px)}
+
+/* projects coverflow */
+.flow{position:relative;height:clamp(300px,34vw,430px);perspective:1300px;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab;outline:0}
+.flow.drag{cursor:grabbing}
+.flow:focus-visible{box-shadow:inset 0 0 0 2px var(--white)}
+.flow-stage{position:absolute;inset:0;transform-style:preserve-3d}
+.fcard{position:absolute;left:50%;top:50%;width:min(560px,78vw);aspect-ratio:16/10;margin:0;border:0;padding:0;border-radius:8px;overflow:hidden;background:var(--panel);cursor:pointer;text-align:left;
+  transform:translate(-50%,-50%) translateX(calc(var(--o) * 62%)) translateZ(calc(var(--a) * -220px)) rotateY(calc(var(--o) * -38deg));
+  transition:transform .7s cubic-bezier(.2,.8,.2,1),filter .7s,opacity .7s;filter:brightness(calc(1 - var(--a) * .38));box-shadow:0 30px 60px -25px #000}
+.flow.drag .fcard{transition:none}
+.fcard[data-far]{opacity:0;pointer-events:none}
+.fcard .art .t{display:none}
+.fcard .info{position:absolute;inset:auto 0 0 0;z-index:3;padding:clamp(14px,2.4vw,24px);background:linear-gradient(transparent,#000d 55%);display:grid;gap:8px;transform:translateZ(40px)}
+.fcard .info h3{margin:0;font:800 clamp(20px,2.4vw,30px)/1.1 var(--f-body);letter-spacing:-.01em}
+.fcard .info .ml{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-size:13px;color:#ccc}
+.fcard .info .ml b{color:#5ed39a}
+.fcard .info .go{justify-self:start;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:4px;background:#fff;color:#000;font:700 14px/1 var(--f-body);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.fcard.is-front .info .go{opacity:1;transform:none}
+.flow-ui{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:6px}
+.flow-ui .fnav{width:42px;height:42px;border-radius:50%;border:1px solid #ffffff33;background:#ffffff10;color:#fff;font-size:22px;line-height:1;cursor:pointer}
+.flow-ui .fnav:hover{background:#ffffff26}
+.dots{display:flex;gap:8px}
+.dots button{width:26px;height:4px;border-radius:2px;border:0;padding:0;background:#ffffff40;cursor:pointer;transition:background .3s,width .3s}
+.dots button[aria-current="true"]{background:var(--p);width:40px}
+.flow-hint{text-align:center;color:var(--mute);font-size:12px;margin-top:8px;padding-inline:var(--gut);font-family:var(--f-mono)}
+@media (max-width:620px){.flow-hint{font-size:11px}.flow{height:clamp(260px,62vw,340px)}}
+
+/* skills globe */
+.globe-box{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px;align-items:center}
+@media (max-width:700px){.globe-box{grid-template-columns:1fr}}
+.orb{position:relative;height:360px;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.orb::before{content:"";position:absolute;left:50%;top:50%;width:280px;height:280px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--p) 20%,transparent),transparent 68%);pointer-events:none}
+.orb button{position:absolute;left:50%;top:50%;white-space:nowrap;font:600 13px/1 var(--f-body);padding:6px 10px;border-radius:999px;border:1px solid #ffffff2e;background:#16161ae6;color:#eee;cursor:pointer;will-change:transform,opacity}
+.orb button.core{background:var(--p);color:#000;border-color:var(--p)}
+.orb button.sel{outline:2px solid #fff;outline-offset:2px}
+.globe-note p{margin:0 0 10px;color:#ccc;font-size:15px;line-height:1.55}
+.chip.hit{animation:hit 1.6s ease;outline:2px solid #fff;outline-offset:2px}
+@keyframes hit{0%,100%{transform:none}20%{transform:scale(1.18)}40%{transform:scale(1)}}
+
+/* modal entrance in 3D */
+.m-card{transform-origin:50% 0}
+@keyframes pop{from{opacity:0;transform:perspective(1200px) rotateX(-10deg) translateY(30px) scale(.96)}}
 </style>
 
 <div class="intro" id="intro">
@@ -562,10 +630,11 @@ function buildRows(pid){
       tile('s4',{prog:30,note:'Season 3 · in progress',badge:'New episodes'})+tile('nyc',{prog:85,note:'Latest build'})+tile('console',{prog:8,note:'Try it'})+tile('education',{prog:100,note:'Completed'})),
     impact:()=>rail('impact','Top 5 by impact','numbers from the resume',IMPACT.map(([big,ln,open],i)=>{
       const k=open;return `<button class="top" type="button" data-open="${open}" aria-label="Number ${i+1}: ${big} ${ln}"><span class="num" aria-hidden="true">${i+1}</span><span class="card"><div class="art sc-${k}" style="--scene:${scene(k)}"><svg class="glyph" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true">${G[T[k].g]}</svg><span class="mono">MA</span><span class="t"><span><b>${big}</b>${ln}</span></span></div></span></button>`;}).join('')),
-    projects:()=>rail('projects','Projects','built end to end',['nyc','vision','credify','dental'].map(k=>tile(k,{note:PROJ[k].genre})).join('')),
+    projects:()=>flowRow(),
     seasons:()=>rail('seasons','Experience','2021 – now',['s4','s2','s1'].map(k=>tile(k,{note:SEASONS[k].when})).join(''))
   };
   $('#rows').innerHTML=p.order.map(r=>R[r]()).join('');
+  initFlow(); tiltOn($('#rows'));
   $$('.rw').forEach(w=>{const r=$('.rail',w);
     $('.arrow.l',w).onclick=()=>r.scrollBy({left:-r.clientWidth*.85,behavior:reduce?'auto':'smooth'});
     $('.arrow.r',w).onclick=()=>r.scrollBy({left:r.clientWidth*.85,behavior:reduce?'auto':'smooth'});});
@@ -590,7 +659,7 @@ const V={
      <div class="side"><div><b>Cast:</b> <span>${p.cast}</span></div><div><b>Genre:</b> <span>${p.genre}</span></div></div></div>
      <div><div class="ep-head"><h3>How it works</h3></div>${eps(p.eps)}</div>
      <div><div class="ep-head"><h3>More like this</h3></div><div class="mini-tiles" style="margin-top:14px">${['nyc','vision','credify','dental'].filter(x=>x!==k).map(x=>tile(x)).join('')}</div></div></div>`;},
-  skills(){return banner('skills','Skills')+`<div class="m-body"><div class="m-meta"><span class="match">${SKILLS.reduce((n,[,l])=>n+l.length,0)} skills</span><span class="box">${SKILLS.length} genres</span><span>Highlighted: the six I use most days</span></div><div class="genres">${SKILLS.map(([g,l])=>`<div class="genre"><h4>${g}</h4><div class="chips">${l.map(s=>`<span class="chip${CORE.includes(s)?' core':''}">${s}</span>`).join('')}</div></div>`).join('')}</div></div>`;},
+  skills(){return banner('skills','Skills')+`<div class="m-body"><div class="m-meta"><span class="match">${SKILLS.reduce((n,[,l])=>n+l.length,0)} skills</span><span class="box">${SKILLS.length} genres</span><span>Highlighted: the six I use most days</span></div><div class="globe-box"><div class="orb" id="orb" role="group" aria-label="Skills globe. Drag to spin it, click a skill to find it in the list."></div><div class="globe-note"><p><b style="color:#fff">Drag the globe</b> to spin it.</p><p>Click any skill to jump to it in the list below. The six filled bubbles are the ones I use most days.</p></div></div><div class="genres">${SKILLS.map(([g,l])=>`<div class="genre"><h4>${g}</h4><div class="chips">${l.map(s=>`<span class="chip${CORE.includes(s)?' core':''}">${s}</span>`).join('')}</div></div>`).join('')}</div></div>`;},
   projects(){return banner('projects','Projects')+`<div class="m-body"><p style="margin:0;color:#ccc">Four builds, each one end to end. Pick one to see how it works.</p><div class="mini-tiles">${['nyc','vision','credify','dental'].map(x=>tile(x)).join('')}</div></div>`;},
   education(){return banner('education','Education')+`<div class="m-body">${eps([
       ['Master of Applied Computing, AI stream','University of Windsor, Windsor, ON.','Aug 2026'],
@@ -610,6 +679,7 @@ function openModal(key,opener){
   card.style.animation='none'; void card.offsetWidth; card.style.animation='';
   $('.m-x',card).focus({preventScroll:true});
   if(key==='console') mountConsole();
+  if(key==='skills') mountGlobe();
   const cm=$('#copy-mail',card); if(cm) cm.onclick=()=>copy('moham4e1@uwindsor.ca',cm);
 }
 function closeModal(){modal.hidden=true;card.innerHTML='';document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true});}
@@ -724,11 +794,113 @@ function frame(){
 function startBg(m,c){mode=m;col=c;cancelAnimationFrame(raf);size();ctx.clearRect(0,0,W,H);frame();}
 if('IntersectionObserver' in window) new IntersectionObserver(es=>{const v=es[0].isIntersecting;if(v&&!vis&&!reduce){vis=true;raf=requestAnimationFrame(frame);}vis=v;}).observe(cv);
 
+/* ================= 3D layer ================= */
+const canHover = matchMedia('(hover:hover)').matches;
+
+/* --- hero poster wall --- */
+function buildWall(){
+  const bill=$('#top'); if(!bill||$('.wall3d',bill)) return;
+  const keys=['experience','nyc','skills','s4','vision','projects','credify','s2','education','dental','contact','s1','console'];
+  const cols=6, per=5; let html='';
+  for(let c=0;c<cols;c++){
+    let items='';
+    for(let i=0;i<per;i++){const k=keys[(c*3+i*2)%keys.length];items+=`<div class="poster"><div class="art sc-${k}" style="--scene:${scene(k)}"><span class="t">${T[k].t}</span></div></div>`;}
+    html+=`<div class="wall-col">${items}${items}</div>`;
+  }
+  const w=document.createElement('div'); w.className='wall3d'; w.setAttribute('aria-hidden','true'); w.innerHTML=`<div class="wall-plane">${html}</div>`;
+  $('#bg').after(w); bill.classList.add('has-wall');
+  if(canHover&&!reduce){
+    const plane=$('.wall-plane',w);
+    bill.addEventListener('pointermove',e=>{const r=bill.getBoundingClientRect();
+      plane.style.setProperty('--wx',((e.clientX-r.left)/r.width-.5)*10+'deg');plane.style.setProperty('--wy',((e.clientY-r.top)/r.height-.5)*-8+'deg');});
+    bill.addEventListener('pointerleave',()=>{plane.style.setProperty('--wx','0deg');plane.style.setProperty('--wy','0deg');});
+  }
+}
+
+/* --- tile tilt + glare (event delegation on the rows) --- */
+function tiltOn(root){
+  if(!canHover||reduce||root.dataset.tilt) return; root.dataset.tilt='1';
+  let cur=null;
+  root.addEventListener('pointermove',e=>{
+    const el=e.target.closest('.tile,.top'); if(cur&&cur!==el){cur.classList.remove('tilt');}
+    cur=el; if(!el) return;
+    const box=(el.classList.contains('top')?$('.card',el):el).getBoundingClientRect();
+    const x=(e.clientX-box.left)/box.width, y=(e.clientY-box.top)/box.height;
+    el.style.setProperty('--ry',((x-.5)*16).toFixed(2)+'deg'); el.style.setProperty('--rx',((.5-y)*14).toFixed(2)+'deg');
+    el.style.setProperty('--gx',(x*100).toFixed(1)+'%'); el.style.setProperty('--gy',(y*100).toFixed(1)+'%');
+    el.classList.add('tilt');
+  });
+  root.addEventListener('pointerleave',()=>{if(cur)cur.classList.remove('tilt');cur=null;});
+}
+
+/* --- projects coverflow --- */
+const FLOW=['nyc','vision','credify','dental'];
+function flowRow(){
+  const cards=FLOW.map((k,i)=>{const p=PROJ[k];return `<button class="fcard" type="button" data-i="${i}" data-key="${k}" aria-label="${p.title}">${art(k)}
+    <span class="info"><h3>${p.title}</h3><span class="ml"><b>${p.stat}</b><span>${p.year}</span><span>${p.genre}</span></span><span class="go">▶ How it works</span></span></button>`;}).join('');
+  return `<section class="row" id="row-projects"><h2>Projects <small>built end to end</small></h2>
+    <div class="flow" id="flow" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Projects. Use the left and right arrow keys to browse."><div class="flow-stage">${cards}</div></div>
+    <div class="flow-ui"><button class="fnav" type="button" id="flow-prev" aria-label="Previous project">‹</button><div class="dots" id="flow-dots">${FLOW.map((k,i)=>`<button type="button" data-go-i="${i}" aria-label="${PROJ[k].title}"></button>`).join('')}</div><button class="fnav" type="button" id="flow-next" aria-label="Next project">›</button></div>
+    <div class="flow-hint">drag, swipe or use ← → · click the front card to open it</div></section>`;
+}
+function initFlow(){
+  const flow=$('#flow'); if(!flow) return;
+  const cards=$$('.fcard',flow), dots=$$('#flow-dots button'); let idx=0, drag=null, moved=false;
+  function layout(off=0){
+    cards.forEach((c,i)=>{const o=i-idx+off, a=Math.abs(o);
+      c.style.setProperty('--o',o.toFixed(3)); c.style.setProperty('--a',a.toFixed(3)); c.style.zIndex=String(100-Math.round(a*10));
+      c.classList.toggle('is-front',Math.round(o)===0); if(a>2.2)c.setAttribute('data-far','');else c.removeAttribute('data-far');
+      c.tabIndex=Math.round(o)===0?0:-1;});
+    dots.forEach((d,i)=>d.setAttribute('aria-current',String(i===idx)));
+  }
+  const go=i=>{idx=(i+cards.length)%cards.length;layout();};
+  $('#flow-prev').onclick=()=>go(idx-1); $('#flow-next').onclick=()=>go(idx+1);
+  dots.forEach(d=>d.onclick=()=>go(+d.dataset.goI));
+  flow.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();go(idx-1);}else if(e.key==='ArrowRight'){e.preventDefault();go(idx+1);}else if(e.key==='Enter'&&e.target===flow){openModal(FLOW[idx],flow);}});
+  flow.addEventListener('pointerdown',e=>{drag={x:e.clientX,id:e.pointerId};moved=false;});
+  flow.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x;if(!moved&&Math.abs(dx)>6){moved=true;flow.classList.add('drag');try{flow.setPointerCapture(drag.id);}catch(_){}}
+    if(moved)layout(dx/(flow.clientWidth*.45));});
+  const end=e=>{if(!drag)return;const dx=e.clientX-drag.x;drag=null;flow.classList.remove('drag');
+    if(moved){const step=Math.round(-dx/(flow.clientWidth*.45));go(idx+step);}else layout();};
+  flow.addEventListener('pointerup',end); flow.addEventListener('pointercancel',end);
+  /* clicks: front card opens, side card comes to the front; capture so the page-wide opener does not fire */
+  flow.addEventListener('click',e=>{const c=e.target.closest('.fcard');e.stopPropagation();if(moved||!c){moved=false;return;}
+    const i=+c.dataset.i; if(i===idx) openModal(c.dataset.key,c); else go(i);},true);
+  layout();
+}
+
+/* --- skills globe (in the Skills modal) --- */
+function mountGlobe(){
+  const orb=$('#orb'); if(!orb) return;
+  const all=[].concat(...SKILLS.map(([,l])=>l));
+  orb.innerHTML=all.map(s=>`<button type="button" class="${CORE.includes(s)?'core':''}">${s}</button>`).join('');
+  const tags=$$('button',orb), n=tags.length;
+  const P=tags.map((el,i)=>{const phi=Math.acos(1-2*(i+.5)/n),th=Math.PI*(1+Math.sqrt(5))*i;return{el,x:Math.sin(phi)*Math.cos(th),y:Math.cos(phi),z:Math.sin(phi)*Math.sin(th)};});
+  let vx=.003,vy=.005,down=null,dragging=false,hover=false;
+  const rot=(ax,ay)=>{const ca=Math.cos(ax),sa=Math.sin(ax),cb=Math.cos(ay),sb=Math.sin(ay);P.forEach(p=>{let y=p.y*ca-p.z*sa,z=p.y*sa+p.z*ca;p.y=y;p.z=z;const x=p.x*cb+p.z*sb;z=-p.x*sb+p.z*cb;p.x=x;p.z=z;});};
+  const draw=()=>{const r=Math.min(orb.clientWidth,orb.clientHeight)*.42;P.forEach(p=>{const d=(p.z+1)/2;
+    p.el.style.transform=`translate(-50%,-50%) translate3d(${(p.x*r).toFixed(1)}px,${(p.y*r).toFixed(1)}px,0) scale(${(.55+.6*d).toFixed(3)})`;
+    p.el.style.opacity=(.1+.9*d*d).toFixed(2);p.el.style.zIndex=String(Math.round(d*100));p.el.style.pointerEvents=d<.4?'none':'auto';
+    p.el.style.filter=d<.45?`blur(${((.45-d)*3).toFixed(1)}px)`:'none';});};
+  orb.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY,id:e.pointerId};dragging=false;});
+  orb.addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-down.x,dy=e.clientY-down.y;
+    if(!dragging&&Math.hypot(dx,dy)>5){dragging=true;try{orb.setPointerCapture(down.id);}catch(_){}}
+    if(dragging){down.x=e.clientX;down.y=e.clientY;vy=dx*.004;vx=-dy*.004;rot(vx,vy);draw();}});
+  const end=()=>{down=null;setTimeout(()=>dragging=false,0);}; orb.addEventListener('pointerup',end); orb.addEventListener('pointercancel',end);
+  orb.addEventListener('mouseenter',()=>hover=true); orb.addEventListener('mouseleave',()=>hover=false);
+  orb.addEventListener('click',e=>{if(dragging)return;const b=e.target.closest('button');if(!b)return;
+    tags.forEach(t=>t.classList.toggle('sel',t===b));
+    const chip=$$('.genres .chip',card).find(c=>c.textContent.trim()===b.textContent.trim());
+    if(chip){$$('.chip.hit',card).forEach(c=>c.classList.remove('hit'));void chip.offsetWidth;chip.classList.add('hit');chip.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});}});
+  draw();
+  if(!reduce)(function spin(){if(!orb.isConnected)return;if(!down){const k=hover?.25:1;vx+=(.003*k-vx)*.03;vy+=(.005*k-vy)*.03;rot(vx,vy);draw();}requestAnimationFrame(spin);})();
+}
+
 /* ---------------- flow: intro → who → app ---------------- */
 const intro=$('#intro'), who=$('#who'), app=$('#app');
 $('#profiles').innerHTML=Object.keys(PROFILES).map(id=>`<button class="prof" type="button" data-p="${id}"><div class="av">${avatar(id)}</div><span>${PROFILES[id].label}</span></button>`).join('');
 function enter(pid){
-  buildWalls();
+  buildWalls(); buildWall();
   const p=PROFILES[pid]; document.documentElement.style.setProperty('--p',p.color);
   $('#tagline').textContent=p.tag; $('#me-label').textContent=p.label; $('#me-av').innerHTML=avatar(pid).replace(/g-/g,'gm-'); $('#acct-now').textContent=p.label;
   $('#acct-list').innerHTML=Object.keys(PROFILES).filter(k=>k!==pid).map(k=>`<button type="button" class="mi" role="menuitem" data-switch="${k}"><span class="mini">${avatar(k).replace(/g-/g,'gl-'+k)}</span>${PROFILES[k].label}</button>`).join('');
