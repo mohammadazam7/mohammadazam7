@@ -51,7 +51,8 @@ Computing (AI)** from the University of Windsor.
 
 ### Experience
 
-**Data Engineer, Analytics & BI** · FGF Brands · North York, ON · *Jan 2026 to present*
+**Data Engineer, Analytics & BI** · FGF Brands · Toronto, ON · *Sep 2026 to present*
+<br>Previously Database & BI Co-op, Jan to Aug 2026
 - Built Python and SQL pipelines that load 5 source systems (~50K rows/day) into reporting tables, saving 10 hours a week
 - Added validation that caught 100+ data errors before they reached 4 downstream teams
 - Delivered Power BI reporting for 13 plants, cutting turnaround from 2 days to 2 hours
@@ -66,7 +67,7 @@ Computing (AI)** from the University of Windsor.
 
 ### Education
 
-- **Master of Applied Computing, AI stream**, University of Windsor (2026). Demo Day 2nd place (Apr 2025)
+- **Master of Applied Computing, AI stream**, University of Windsor (2026). 80% cumulative average. First place, COMP 8967 Pitch Competition (Fall 2025); Demo Day 2nd place (Apr 2025)
 - **B.Tech, Computer Science Engineering**, Glocal University (2021). Vice President, Computer Science Society
 
 ### Tools
