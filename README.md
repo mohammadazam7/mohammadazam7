@@ -9,7 +9,7 @@ services for client products at Konarak Global Services. I hold a **Master of Ap
 Computing (AI)** from the University of Windsor.
 
 [Portfolio](https://mohammadazam7.github.io/mohammadazam7/) ·
-[LinkedIn](https://www.linkedin.com/in/mohammad-azam2) ·
+[LinkedIn](https://www.linkedin.com/in/mohammad-azam) ·
 [Email](mailto:moham4e1@uwindsor.ca)
 
 ---
