@@ -338,6 +338,34 @@ footer button{background:none;border:0;color:var(--mute);text-decoration:underli
 /* modal entrance in 3D */
 .m-card{transform-origin:50% 0}
 @keyframes pop{from{opacity:0;transform:perspective(1200px) rotateX(-10deg) translateY(30px) scale(.96)}}
+.pm{margin:0 0 22px;border:1px solid var(--edge);border-radius:8px;overflow:hidden;background:#0f172a}
+.pm img,.pm video{display:block;width:100%;height:auto}
+.pm figcaption{font:500 12px/1 var(--f-mono);color:var(--mute);padding:10px 14px;border-top:1px solid var(--edge);background:var(--panel)}
+.plinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.plinks a{font:600 13px/1 var(--f-body);color:#fff;border:1px solid var(--edge);border-radius:6px;padding:9px 12px;text-decoration:none}
+.plinks a:hover{border-color:var(--p);color:var(--p)}
+.pstat{font:600 12px/1 var(--f-body);padding:5px 8px;border-radius:4px}
+.pstat.done{background:#5ed39a22;color:#5ed39a}.pstat.wip{background:#f5a52422;color:#f5a524}
+button.chip{border:0;cursor:pointer}button.chip:hover{background:#ffffff26}button.chip.core:hover{filter:brightness(1.1)}
+.chip.sel{outline:2px solid #fff;outline-offset:2px}
+.used{border:1px solid var(--edge);border-radius:8px;padding:16px;margin:18px 0;min-height:64px}
+.used h4{margin:0 0 12px;font:400 24px/1 var(--f-display);letter-spacing:.03em;color:var(--p)}.used p{margin:0;color:var(--mute)}
+.used-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.used-item{display:grid;gap:4px;text-align:left;background:#ffffff0d;border:1px solid var(--edge);border-radius:6px;padding:12px;color:#fff;cursor:pointer;font:inherit}
+.used-item span{font-size:13px;color:var(--mute)}.used-item:hover{border-color:var(--p)}
+.gh{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:start;padding:0 4%}
+@media (max-width:820px){.gh{grid-template-columns:1fr}}
+.gh-grid{display:grid;grid-template-rows:repeat(7,13px);grid-auto-flow:column;grid-auto-columns:13px;gap:3px}
+.gh-grid i{border-radius:3px;background:#ffffff12}
+.gh-grid i.l1{background:color-mix(in srgb,var(--p) 35%,#16161a)}.gh-grid i.l2{background:color-mix(in srgb,var(--p) 60%,#16161a)}
+.gh-grid i.l3{background:color-mix(in srgb,var(--p) 80%,#16161a)}.gh-grid i.l4{background:var(--p)}
+.gh-cap{margin-top:12px;font-size:13px;color:var(--mute)}.gh-cap b{color:#fff}.gh-cap a{color:var(--p);margin-left:8px}
+.gh-feed{list-style:none;margin:0;padding:0;border-top:1px solid var(--edge)}
+.gh-feed li{border-bottom:1px solid var(--edge)}
+.gh-feed a{display:grid;grid-template-columns:minmax(120px,auto) minmax(0,1fr) auto;gap:14px;padding:11px 4px;color:#ddd;text-decoration:none;font-size:14px}
+.gh-feed a:hover{background:#ffffff08}
+.gh-repo{font:500 12px/1.6 var(--f-mono);color:var(--p)}.gh-msg{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gh-at{color:var(--mute);font-size:12px}
+.gh-wait{padding:14px 4px;color:var(--mute)}.gh-wait a{color:var(--p)}
 </style>
 </head>
 <body>
@@ -426,13 +454,15 @@ const G = {
 const T = {
   experience:{t:'Experience',sub:'3 seasons · 2021 to now',c1:'#f5a524',c2:'#3a2508',g:'timeline',ln:'Data engineering, analytics, ML and production software.',open:'s4'},
   skills:{t:'Skills',sub:'40+ skills · 7 genres',c1:'#36c2c9',c2:'#0b2b2e',g:'hex',ln:'Python, SQL, PySpark, AWS, Power BI, C#/.NET and more.'},
-  projects:{t:'Projects',sub:'4 builds · end to end',c1:'#9a7cff',c2:'#1e1638',g:'cube',ln:'A data lake, a real-time vision system and two full-stack apps.'},
+  projects:{t:'Projects',sub:'6 builds · end to end',c1:'#9a7cff',c2:'#1e1638',g:'cube',ln:'A data lake, ML systems and two full-stack apps.'},
   education:{t:'Education',sub:'MAC, AI stream',c1:'#5ed39a',c2:'#0f2d1f',g:'cap',ln:'Master of Applied Computing, University of Windsor.'},
   contact:{t:'Contact Me',sub:'email · linkedin · github',c1:'#e86fa8',c2:'#33122a',g:'mail',ln:'The fastest way to start a conversation.'},
   contactbg:{t:'Contact Me',sub:'',c1:'#e86fa8',c2:'#33122a',g:'mail',ln:''},
   console:{t:'Query My Resume',sub:'interactive special',c1:'#7fd1d6',c2:'#0e2224',g:'term',ln:'A SQL console with my whole resume loaded as tables.'},
   nyc:{t:'NYC Taxi Data Lake',sub:'AWS · PySpark · 2026',c1:'#f5a524',c2:'#2a1c08',g:'lake',ln:'~3M rows a month into a Redshift star schema.'},
   vision:{t:'AI Multimodal Assistant',sub:'PyTorch · k8s · 2025',c1:'#36c2c9',c2:'#08242a',g:'vision',ln:'Live object detection in under 60 ms.'},
+  rag:{t:'RAG Evaluation Platform',sub:'Retrieval · evaluation · 2026',c1:'#e86fa8',c2:'#33122a',g:'term',ln:'Answers with citations, measured by an evaluation harness.'},
+  recsys:{t:'Two-Tower Recommender',sub:'PyTorch · FAISS · 2026',c1:'#5ed39a',c2:'#0f2d1f',g:'hex',ln:'Retrieval and ranking, evaluated on a temporal holdout.'},
   dental:{t:'Dental Inventory System',sub:'Django · React · 2025',c1:'#5ed39a',c2:'#0f2d1f',g:'cube',ln:'Stock tracking and reorder alerts for clinic staff.'},
   credify:{t:'Credify',sub:'Spring Boot · React · 2025',c1:'#9a7cff',c2:'#1a1433',g:'cards',ln:'Compare credit cards across Canadian and U.S. banks.'},
   s4:{t:'FGF Brands',sub:'FGF Brands · 2026',c1:'#f5a524',c2:'#3a2508',g:'star',ln:'Data Engineer, Analytics & BI.'},
@@ -441,12 +471,12 @@ const T = {
   s1:{t:'Midas Consulting',sub:'Midas Consulting · 2021',c1:'#e86fa8',c2:'#33122a',g:'timeline',ln:'AI/ML Engineer Intern.'}
 };
 const SEASONS = {
-  s4:{n:3,title:'FGF Brands',role:'Data Engineer, Analytics & BI',when:'Jan 2026 – Present',place:'North York, ON, Canada',status:'New episodes weekly',
-      desc:'Season four moves the story into manufacturing. Five source systems, thirteen plants and one question: can the reports be trusted, and can they arrive the same morning?',
+  s4:{n:3,title:'FGF Brands',role:'Data Engineer, Analytics & BI (Database & BI Co-op, Jan to Aug 2026)',when:'Jan 2026 – Present',place:'Toronto, ON, Canada',status:'New episodes weekly',
+      desc:'Season four moves the story into manufacturing. Five source systems, multiple plants and one question: can the reports be trusted, and can they arrive the same morning?',
       cast:'Python, SQL, Power BI',
       eps:[['Five Sources, One Table','Built Python and SQL pipelines that load 5 source systems, about 50K rows a day, into reporting tables.','saves 10 h/week'],
            ['The Catch','Added validation checks that caught over 100 data errors before they reached 4 teams.','100+ errors caught'],
-           ['Thirteen Plants','Delivered Power BI reports for 13 plants, cutting report turnaround from 2 days to 2 hours.','2 days → 2 hours'],
+           ['Every Plant','Delivered Power BI reporting across multiple manufacturing plants, cutting report turnaround from 2 days to 2 hours.','2 days → 2 hours'],
            ['Explain Plan','Tuned slow SQL with execution plans, CTEs and window functions to speed up daily reporting.','faster daily runs']]},
   s2:{n:2,title:'Konarak Global Services',role:'Data & Software Engineer',when:'Nov 2021 – Nov 2024',place:'Rudrapur, Uttarakhand, India',status:'3 years',
       desc:'The long season. Production services for real clients, models that had to earn their accuracy, and a memory leak that crashed things every week until it didn\'t.',
@@ -464,11 +494,11 @@ const SEASONS = {
            ['Live Board','Launched real-time dashboards to track staffing levels and overtime trends for operations staff.','real-time']]}
 };
 const PROJ = {
-  nyc:{title:'NYC Taxi Data Lake on AWS',year:'Sep 2026 – Oct 2026',genre:'Data engineering',cast:'Python, PySpark, AWS Glue, S3, Athena, Redshift Serverless, CloudWatch, SNS',
+  nyc:{repo:'https://github.com/mohammadazam7/nyc-taxi-data-lake',img:'assets/projects/nyc-taxi-data-lake.jpg',docs:'https://github.com/mohammadazam7/nyc-taxi-data-lake/blob/main/docs/architecture.md',status:'Complete',title:'NYC Taxi Data Lake on AWS',year:'Sep 2026 – Oct 2026',genre:'Data engineering',cast:'Python, PySpark, AWS Glue, S3, Athena, Redshift Serverless, CloudWatch, SNS',
     desc:'An AWS batch pipeline that ingests NYC taxi trip data, about 3M rows a month, into an S3 data lake, cleans it with PySpark Glue jobs, loads a Redshift star schema, and alerts on data-quality failures.',
     stat:'~3M rows/month',
     eps:[['Land','Taxi trip data lands in the S3 data lake, about 3M rows a month.','S3'],['Catalog','Glue catalogs the raw data so it can be queried with Athena.','Glue · Athena'],['Clean','PySpark Glue jobs clean, deduplicate and validate every trip.','PySpark'],['Model','Clean trips load into a star schema in Redshift Serverless.','Redshift'],['Watch','CloudWatch and SNS alert on data-quality failures, and a dashboard shows trip volume, revenue and the busiest zones.','alerts + dashboard']]},
-  vision:{repo:'https://github.com/mohammadazam7/ai_multimodal_assistant',title:'AI Multimodal Assistant',year:'Aug 2025 – Sep 2025',genre:'Machine learning',cast:'Python, FastAPI, React, PyTorch, OpenCV, Docker, Kubernetes',
+  vision:{repo:'https://github.com/mohammadazam7/ai_multimodal_assistant',img:'assets/projects/vision-service.jpg',status:'Complete',title:'AI Multimodal Assistant',year:'Aug 2025 – Sep 2025',genre:'Machine learning',cast:'Python, FastAPI, React, PyTorch, OpenCV, Docker, Kubernetes',
     desc:'Real-time object detection on live camera feeds. Frame batching and FP16 quantization raised throughput, and the pipeline runs on Kubernetes with autoscaling.',
     stat:'<60 ms · +35% throughput',
     eps:[['Capture','OpenCV reads frames from up to 8 live camera streams.','8 streams'],['Batch','Frames are grouped so the GPU works on several at once.','+35%'],['Detect','A PyTorch model in FP16 finds objects in each frame.','FP16'],['Serve','FastAPI returns detections to a React interface.','<60 ms'],['Scale','Kubernetes adds pods as the number of streams grows.','autoscale']]},
@@ -481,6 +511,15 @@ const PROJ = {
     stat:'<200 ms queries',
     eps:[['Search','Users search and filter cards on several criteria at once in React.','React'],['API','Spring Boot REST endpoints turn filters into queries.','REST'],['Query','MySQL returns matching Canadian and U.S. cards.','<200 ms'],['Test','Selenium UI tests run before every release.','Selenium']]}
 };
+PROJ.rag={repo:'https://github.com/mohammadazam7/rag-eval-platform',img:'assets/projects/rag-eval-platform.jpg',status:'In development',title:'RAG Evaluation Platform',year:'Oct 2026 – Present',genre:'Machine learning',cast:'Python, BM25, Embeddings, FastAPI, NumPy, pytest',
+  desc:'Question answering over a document collection with answers that cite their sources, built around an evaluation harness so that changes to chunking, retrieval or generation are judged on measured recall, faithfulness and hallucination rate.',
+  stat:'in development',
+  eps:[['Chunk','Documents are split into passages with stable IDs and exact offsets back into the source.','implemented'],['Retrieve','BM25 and dense retrieval run side by side and are fused with reciprocal rank fusion.','implemented'],['Answer','A generator answers only from retrieved passages and cites them.','next'],['Measure','Recall@k, MRR, faithfulness and hallucination rate are compared across configurations.','next']]};
+PROJ.recsys={repo:'https://github.com/mohammadazam7/recsys-two-tower',status:'In development',title:'Two-Tower Recommender',year:'Oct 2026 – Present',genre:'Machine learning',cast:'Python, PyTorch, FAISS, pandas, FastAPI',
+  desc:'A two-stage recommender: a two-tower model retrieves candidates from an approximate nearest neighbour index and a ranking model orders them, each stage evaluated offline on a temporal holdout and served behind FastAPI.',
+  stat:'in development',
+  eps:[['Split','Each user\'s latest ratings are held out so evaluation never sees the future.','implemented'],['Retrieve','User and item towers learn embeddings for nearest neighbour search.','next'],['Rank','A ranking model reorders the retrieved candidates.','next'],['Serve','FastAPI returns top-k recommendations per user.','next']]};
+const PKEYS=['nyc','rag','vision','recsys','credify','dental'];
 const SKILLS = [
   ['Languages & frameworks',['Python','SQL','C++','C#/.NET','Java','JavaScript','TypeScript','Django','Spring Boot','React']],
   ['Data engineering',['ETL / ELT','PySpark','dbt','Airflow','Kafka','Star schema modeling']],
@@ -590,16 +629,16 @@ function buildWalls(){
 const PROFILES = {
   recruiter:{label:'Recruiter',color:'#f5a524',mode:'bars',pattern:'bars',
     tag:'Data & Software Engineer with 4 years across data engineering, analytics, machine learning and production software. I build ETL pipelines, dashboards, ML models and APIs with automated testing and CI/CD, in Python, SQL and C#/.NET on AWS and Azure.',
-    picks:['experience','skills','projects','education','contact','console'],order:['picks','continue','impact','projects','seasons']},
+    picks:['experience','skills','projects','education','contact','console'],order:['picks','continue','impact','projects','github','seasons']},
   engineer:{label:'Engineer',color:'#36c2c9',mode:'rain',pattern:'grid',
     tag:'Python, SQL and PySpark pipelines on AWS and Azure. Feature engineering that moved a model from 82% to 90%, CI/CD with 150 tests per PR, and one very satisfying memory leak.',
-    picks:['projects','skills','console','experience','contact'],order:['projects','picks','continue','seasons','impact']},
+    picks:['projects','skills','console','experience','contact'],order:['projects','github','picks','continue','seasons','impact']},
   manager:{label:'Hiring manager',color:'#9a7cff',mode:'graph',pattern:'nodes',
     tag:'Turns messy source systems into reports people trust: 5 sources, 50K rows a day, 100+ errors caught early, and reports in 2 hours instead of 2 days.',
-    picks:['experience','projects','skills','education','contact'],order:['impact','picks','seasons','projects','continue']},
+    picks:['experience','projects','skills','education','contact'],order:['impact','picks','seasons','projects','github','continue']},
   curious:{label:'Just curious',color:'#5ed39a',mode:'flow',pattern:'dots',
     tag:'Look around. There\'s a SQL console with my whole resume in it, four seasons of career, and a data lake full of taxi trips.',
-    picks:['console','projects','skills','experience','education','contact'],order:['continue','projects','picks','impact','seasons']}
+    picks:['console','projects','skills','experience','education','contact'],order:['continue','projects','github','picks','impact','seasons']}
 };
 function avatar(id){
   const p=PROFILES[id], c=p.color; let pat='';
@@ -630,6 +669,29 @@ const IMPACT=[['2d → 2h','Report turnaround','s4'],['82 → 90%','Model accura
 function rail(id,title,sub,html){
   return `<section class="row" id="row-${id}"><h2>${title}${sub?` <small>${sub}</small>`:''}</h2><div class="rw"><button class="arrow l" type="button" aria-label="Scroll left">‹</button><div class="rail">${html}</div><button class="arrow r" type="button" aria-label="Scroll right">›</button></div></section>`;
 }
+let GH=null;
+function ghJSON(url){const key='gh:'+url;
+  try{const c=JSON.parse(localStorage.getItem(key)||'null');if(c&&Date.now()-c.t<15*60e3)return Promise.resolve(c.v);}catch(e){}
+  return fetch(url).then(r=>r.ok?r.json():Promise.reject(r.status)).then(v=>{try{localStorage.setItem(key,JSON.stringify({t:Date.now(),v}));}catch(e){}return v;});}
+function loadGitHub(){const heat=$('#gh-heat'),feed=$('#gh-feed');if(!heat)return;
+  const render=ev=>{
+    const day=d=>d.toISOString().slice(0,10), counts={};
+    const pushes=ev.filter(e=>e.type==='PushEvent');
+    pushes.forEach(e=>{const k=day(new Date(e.created_at));counts[k]=(counts[k]||0)+Math.max(1,e.payload.size||(e.payload.commits||[]).length);});
+    const end=new Date();end.setHours(0,0,0,0);const start=new Date(end);start.setDate(end.getDate()-83-end.getDay());
+    let cells='';for(let d=new Date(start);d<=end;d.setDate(d.getDate()+1)){const n=counts[day(d)]||0;const lv=n===0?0:n<3?1:n<6?2:n<10?3:4;
+      cells+=`<i class="l${lv}" title="${n} commit${n===1?'':'s'} on ${d.toDateString().slice(4)}"></i>`;}
+    const total=Object.values(counts).reduce((a,b)=>a+b,0);
+    heat.innerHTML=`<div class="gh-grid">${cells}</div><div class="gh-cap"><b>${total}</b> commits pushed in the last 12 weeks <a href="https://github.com/mohammadazam7" target="_blank" rel="noopener">Full graph on GitHub</a></div>`;
+    const ago=t=>{const s=(Date.now()-new Date(t))/1000;return s<3600?Math.max(1,Math.round(s/60))+' min ago':s<86400?Math.round(s/3600)+' h ago':Math.round(s/86400)+' d ago';};
+    const repos=[...new Set(pushes.map(e=>e.repo.name))].slice(0,6);
+    Promise.all(repos.map(r=>ghJSON(`https://api.github.com/repos/${r}/commits?per_page=4`).catch(()=>[])))
+      .then(lists=>{const items=[];lists.forEach((l,i)=>(Array.isArray(l)?l:[]).forEach(c=>items.push({repo:repos[i].split('/')[1],msg:c.commit.message.split('\n')[0],sha:c.sha,at:c.commit.author.date})));
+        items.sort((a,b)=>new Date(b.at)-new Date(a.at));
+        feed.innerHTML=items.slice(0,7).map(c=>`<li><a href="https://github.com/mohammadazam7/${c.repo}/commit/${c.sha}" target="_blank" rel="noopener"><span class="gh-repo">${c.repo}</span><span class="gh-msg">${c.msg.replace(/</g,'&lt;')}</span><span class="gh-at">${ago(c.at)}</span></a></li>`).join('')||'<li class="gh-wait"><a href="https://github.com/mohammadazam7" target="_blank" rel="noopener">See my latest work on GitHub</a></li>';});};
+  if(GH){render(GH);return;}
+  ghJSON('https://api.github.com/users/mohammadazam7/events/public?per_page=100').then(ev=>{GH=ev;render(ev);})
+    .catch(()=>{feed.innerHTML='<li class="gh-wait"><a href="https://github.com/mohammadazam7" target="_blank" rel="noopener">See my latest work on GitHub</a></li>';heat.innerHTML='';});}
 function buildRows(pid){
   const p=PROFILES[pid], who=p.label.toLowerCase();
   const R={
@@ -639,10 +701,11 @@ function buildRows(pid){
     impact:()=>rail('impact','Top 5 by impact','numbers from the resume',IMPACT.map(([big,ln,open],i)=>{
       const k=open;return `<button class="top" type="button" data-open="${open}" aria-label="Number ${i+1}: ${big} ${ln}"><span class="num" aria-hidden="true">${i+1}</span><span class="card"><div class="art sc-${k}" style="--scene:${scene(k)}"><svg class="glyph" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true">${G[T[k].g]}</svg><span class="mono">MA</span><span class="t"><span><b>${big}</b>${ln}</span></span></div></span></button>`;}).join('')),
     projects:()=>flowRow(),
+    github:()=>`<section class="row" id="row-github"><h2>Live from GitHub <small>public activity, updated on every visit</small></h2><div class="gh" id="gh"><div class="gh-heat" id="gh-heat" aria-label="Commit activity over the last 12 weeks"></div><ol class="gh-feed" id="gh-feed"><li class="gh-wait">Loading recent commits…</li></ol></div></section>`,
     seasons:()=>rail('seasons','Experience','2021 – now',['s4','s2','s1'].map(k=>tile(k,{note:SEASONS[k].when})).join(''))
   };
   $('#rows').innerHTML=p.order.map(r=>R[r]()).join('');
-  initFlow(); tiltOn($('#rows'));
+  initFlow(); tiltOn($('#rows')); loadGitHub();
   $$('.rw').forEach(w=>{const r=$('.rail',w);
     $('.arrow.l',w).onclick=()=>r.scrollBy({left:-r.clientWidth*.85,behavior:reduce?'auto':'smooth'});
     $('.arrow.r',w).onclick=()=>r.scrollBy({left:r.clientWidth*.85,behavior:reduce?'auto':'smooth'});});
@@ -662,13 +725,16 @@ const V={
      <div class="side"><div><b>Cast:</b> <span>${s.cast}</span></div><div><b>Genre:</b> <span>Data, engineering, impact</span></div><div><b>This season is:</b> <span>${s.status==='New episodes weekly'?'Ongoing':'Complete'}</span></div></div></div>
      <div><div class="ep-head"><h3>Episodes</h3><div class="seasons" role="group" aria-label="Choose a season">${['s4','s2','s1'].map(x=>`<button type="button" data-open="${x}" aria-pressed="${x===k}">Season ${SEASONS[x].n}</button>`).join('')}</div></div>${eps(s.eps)}</div></div>`;},
   project(k){const p=PROJ[k];
+    const media=p.video?`<figure class="pm"><video controls preload="metadata" playsinline poster="${p.poster||p.img||''}" src="${p.video}"></video><figcaption>Demo recording</figcaption></figure>`
+      :p.img?`<figure class="pm"><a href="${p.img}" target="_blank" rel="noopener"><img src="${p.img}" alt="${p.title} architecture diagram" loading="lazy"></a><figcaption>Architecture</figcaption></figure>`:'';
+    const links=`<div class="plinks">${p.repo?`<a href="${p.repo}" target="_blank" rel="noopener">Source code</a>`:''}${p.docs?`<a href="${p.docs}" target="_blank" rel="noopener">Architecture notes</a>`:''}${p.repo?`<a href="${p.repo}/commits/main" target="_blank" rel="noopener">Commit history</a>`:''}</div>`;
     return banner(k,p.title,playBtn(p.repo?'View on GitHub':'GitHub profile',`data-href="${p.repo||'https://github.com/mohammadazam7'}"`))+
-    `<div class="m-body"><div class="m-cols"><div><div class="m-meta"><span class="match">${p.stat}</span><span>${p.year}</span><span class="box">${p.genre}</span></div><p>${p.desc}</p></div>
+    `<div class="m-body">${media}<div class="m-cols"><div><div class="m-meta"><span class="match">${p.stat}</span><span>${p.year}</span><span class="box">${p.genre}</span>${p.status?`<span class="pstat ${p.status==='Complete'?'done':'wip'}">${p.status}</span>`:''}</div><p>${p.desc}</p>${links}</div>
      <div class="side"><div><b>Cast:</b> <span>${p.cast}</span></div><div><b>Genre:</b> <span>${p.genre}</span></div></div></div>
      <div><div class="ep-head"><h3>How it works</h3></div>${eps(p.eps)}</div>
-     <div><div class="ep-head"><h3>More like this</h3></div><div class="mini-tiles" style="margin-top:14px">${['nyc','vision','credify','dental'].filter(x=>x!==k).map(x=>tile(x)).join('')}</div></div></div>`;},
-  skills(){return banner('skills','Skills')+`<div class="m-body"><div class="m-meta"><span class="match">${SKILLS.reduce((n,[,l])=>n+l.length,0)} skills</span><span class="box">${SKILLS.length} genres</span><span>Highlighted: the six I use most days</span></div><div class="globe-box"><div class="orb" id="orb" role="group" aria-label="Skills globe. Drag to spin it, click a skill to find it in the list."></div><div class="globe-note"><p><b style="color:#fff">Drag the globe</b> to spin it.</p><p>Click any skill to jump to it in the list below. The six filled bubbles are the ones I use most days.</p></div></div><div class="genres">${SKILLS.map(([g,l])=>`<div class="genre"><h4>${g}</h4><div class="chips">${l.map(s=>`<span class="chip${CORE.includes(s)?' core':''}">${s}</span>`).join('')}</div></div>`).join('')}</div></div>`;},
-  projects(){return banner('projects','Projects')+`<div class="m-body"><p style="margin:0;color:#ccc">Four builds, each one end to end. Pick one to see how it works.</p><div class="mini-tiles">${['nyc','vision','credify','dental'].map(x=>tile(x)).join('')}</div></div>`;},
+     <div><div class="ep-head"><h3>More like this</h3></div><div class="mini-tiles" style="margin-top:14px">${PKEYS.filter(x=>x!==k).map(x=>tile(x)).join('')}</div></div></div>`;},
+  skills(){return banner('skills','Skills')+`<div class="m-body"><div class="m-meta"><span class="match">${SKILLS.reduce((n,[,l])=>n+l.length,0)} skills</span><span class="box">${SKILLS.length} genres</span><span>Highlighted: the six I use most days</span></div><div class="globe-box"><div class="orb" id="orb" role="group" aria-label="Skills globe. Drag to spin it, click a skill to find it in the list."></div><div class="globe-note"><p><b style="color:#fff">Drag the globe</b> to spin it.</p><p>Click any skill to see the jobs and projects where I used it. The six filled bubbles are the ones I use most days.</p></div></div><div class="used" id="used" aria-live="polite"><p>Select any skill to see where I used it.</p></div><div class="genres">${SKILLS.map(([g,l])=>`<div class="genre"><h4>${g}</h4><div class="chips">${l.map(s=>`<button type="button" class="chip${CORE.includes(s)?' core':''}" data-skill="${s}">${s}</button>`).join('')}</div></div>`).join('')}</div></div>`;},
+  projects(){return banner('projects','Projects')+`<div class="m-body"><p style="margin:0;color:#ccc">Six builds, each one end to end. Pick one to see the architecture and how it works.</p><div class="mini-tiles">${PKEYS.map(x=>tile(x)).join('')}</div></div>`;},
   education(){return banner('education','Education')+`<div class="m-body">${eps([
       ['Master of Applied Computing, AI stream','University of Windsor, Windsor, ON.','Aug 2026'],
       ['Demo Day, 2nd place','AI-driven project recognized by industry judges for innovation and technical excellence.','Apr 2025'],
@@ -679,6 +745,17 @@ const V={
      <div class="qchips">${["SELECT role, company, start FROM experience ORDER BY start DESC;","SELECT name, stack FROM projects WHERE stack LIKE '%AWS%';","SELECT category, COUNT(*) FROM skills GROUP BY category;","SELECT skill FROM skills WHERE level = 'core';","CALL hire_me();"].map(q=>`<button type="button" data-q="${q.replace(/"/g,'&quot;')}">${q.replace(/</g,'&lt;')}</button>`).join('')}</div>
      <div class="term"><div class="term-out" id="term-out" aria-live="polite"></div><form class="term-in" id="term-form" autocomplete="off"><label for="term-input">azam=#</label><input id="term-input" type="text" spellcheck="false" autocapitalize="off" placeholder="Type SQL or help, then Enter"></form></div></div>`;}
 };
+function usedIn(skill){
+  const key=skill.toLowerCase().replace(/ \/ .*/,'').replace(/[^a-z0-9#+.]/g,'');
+  const has=txt=>txt.toLowerCase().replace(/[^a-z0-9#+.,]/g,'').split(',').some(x=>x&&(x===key||x.includes(key)||key.includes(x)&&x.length>2));
+  const out=[];
+  for(const k of ['s4','s2','s1']){const s=SEASONS[k];if(has(s.cast))out.push([k,s.title,s.role.split(' (')[0]]);}
+  for(const k of PKEYS){const p=PROJ[k];if(has(p.cast))out.push([k,p.title,p.genre]);}
+  return out;}
+function showUsed(skill,btn){const box=$('#used');if(!box)return;
+  $$('.chip.sel').forEach(c=>c.classList.remove('sel'));btn.classList.add('sel');
+  const hits=usedIn(skill);
+  box.innerHTML=`<h4>${skill}</h4>`+(hits.length?`<div class="used-list">${hits.map(([k,t,r])=>`<button type="button" class="used-item" data-open="${k}"><b>${t}</b><span>${r}</span></button>`).join('')}</div>`:`<p>Used in coursework and smaller work not listed here.</p>`);}
 function openModal(key,opener){
   let html;
   if(SEASONS[key]) html=V.season(key); else if(PROJ[key]) html=V.project(key); else if(V[key]) html=V[key](); else return;
@@ -697,6 +774,7 @@ function copy(text,btn){const ok=()=>{btn.textContent='Copied';setTimeout(()=>bt
 document.addEventListener('click',e=>{
   const c=e.target.closest('[data-close]'); if(c){closeModal();return;}
   const h=e.target.closest('[data-href]'); if(h){const a=document.createElement('a');a.href=h.dataset.href;a.target='_blank';a.rel='noopener';a.click();return;}
+  const sk=e.target.closest('[data-skill]'); if(sk){showUsed(sk.dataset.skill,sk);return;}
   const o=e.target.closest('[data-open]'); if(o){openModal(o.dataset.open,o);return;}
   const g=e.target.closest('[data-go]'); if(g){closeModal();const t=document.getElementById(g.dataset.go);if(t)t.scrollIntoView({behavior:reduce?'auto':'smooth',block:g.dataset.go==='top'?'start':'center'});}
 });
@@ -842,7 +920,7 @@ function tiltOn(root){
 }
 
 /* --- projects coverflow --- */
-const FLOW=['nyc','vision','credify','dental'];
+const FLOW=PKEYS;
 function flowRow(){
   const cards=FLOW.map((k,i)=>{const p=PROJ[k];return `<button class="fcard" type="button" data-i="${i}" data-key="${k}" aria-label="${p.title}">${art(k)}
     <span class="info"><h3>${p.title}</h3><span class="ml"><b>${p.stat}</b><span>${p.year}</span><span>${p.genre}</span></span><span class="go">▶ How it works</span></span></button>`;}).join('');
