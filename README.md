@@ -42,7 +42,7 @@ NYC taxi data lake.
 
 | Project | What it is | Stack |
 |---|---|---|
-| [ai_multimodal_assistant](https://github.com/mohammadazam7/ai_multimodal_assistant) | Real-time object detection on live camera feeds with multi-stream batching, metrics and Kubernetes autoscaling | PyTorch · FastAPI · React · Kubernetes |
+| [ai_multimodal_assistant](https://github.com/mohammadazam7/ai_multimodal_assistant) | Real-time object detection on live camera feeds with multi-stream batching, metrics and Kubernetes autoscaling ([demo video](https://github.com/mohammadazam7/ai_multimodal_assistant/blob/main/docs/demo/demo.mp4)) | PyTorch · FastAPI · React · Kubernetes |
 | [rag-eval-platform](https://github.com/mohammadazam7/rag-eval-platform) | Retrieval-augmented QA with citations and an evaluation suite for recall, faithfulness and hallucination rate | Python · embeddings · BM25 · FastAPI |
 | [recsys-two-tower](https://github.com/mohammadazam7/recsys-two-tower) | Two-tower retrieval and ranking recommender with ANN search and offline metrics | PyTorch · FAISS · FastAPI |
 | [tiny-llm](https://github.com/mohammadazam7/tiny-llm) | GPT-style language model with its own tokenizer and training pipeline, plus model-size vs. loss experiments | PyTorch |
