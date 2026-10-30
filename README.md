@@ -25,11 +25,17 @@ Computing (AI)** from the University of Windsor.
 
 ### Selected projects
 
+[![City Pulse, the interactive 3D explorer for nyc-taxi-data-lake](https://raw.githubusercontent.com/mohammadazam7/nyc-taxi-data-lake/main/docs/demo/city-pulse.png)](https://github.com/mohammadazam7/nyc-taxi-data-lake/blob/main/docs/demo/city-pulse.mp4)
+
+**City Pulse** ([live](https://mohammadazam7.github.io/nyc-taxi-data-lake/) · [demo video](https://github.com/mohammadazam7/nyc-taxi-data-lake/blob/main/docs/demo/city-pulse.mp4)):
+an interactive 3D explorer, built in React and three.js, for the analytics produced by the
+NYC taxi data lake.
+
 **Data engineering**
 
 | Project | What it is | Stack |
 |---|---|---|
-| [nyc-taxi-data-lake](https://github.com/mohammadazam7/nyc-taxi-data-lake) | S3 data lake for NYC TLC trips: idempotent ingest, PySpark cleaning with quarantine, Redshift star schema, data-quality alerts, Terraform | Python · PySpark · Glue · Athena · Redshift · Terraform |
+| [nyc-taxi-data-lake](https://github.com/mohammadazam7/nyc-taxi-data-lake) | S3 data lake for NYC TLC trips: idempotent ingest, PySpark cleaning with quarantine, Redshift star schema, data-quality alerts, Terraform, and a [live 3D explorer](https://mohammadazam7.github.io/nyc-taxi-data-lake/) | Python · PySpark · Glue · Athena · Redshift · Terraform · React · three.js |
 | [ecommerce-data-ai-platform](https://github.com/mohammadazam7/ecommerce-data-ai-platform) | End-to-end e-commerce platform: ETL, SQL analytics and dashboards, ML models for prediction | Python · SQL · scikit-learn |
 
 **Machine learning & AI**
