@@ -320,6 +320,27 @@ footer button{background:none;border:0;color:var(--mute);text-decoration:underli
 .dots{display:flex;gap:8px}
 .dots button{width:26px;height:4px;border-radius:2px;border:0;padding:0;background:#ffffff40;cursor:pointer;transition:background .3s,width .3s}
 .dots button[aria-current="true"]{background:var(--p);width:40px}
+.spot{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:28px;margin:22px auto 0;max-width:1100px;padding:22px var(--gut) 6px;border-top:1px solid var(--edge);opacity:0;transform:translateY(8px)}
+.spot.in{animation:spotIn .45s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes spotIn{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.spot.in{animation:none;opacity:1;transform:none}}
+@media (max-width:820px){.spot{grid-template-columns:1fr}}
+.sp-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.sp-top h3{margin:0;font:800 clamp(20px,2vw,26px)/1.15 var(--f-body)}
+.sp-stat{font:600 11px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:#5ed39a;border:1px solid #5ed39a55;border-radius:999px;padding:5px 9px}
+.sp-meta{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:13px;color:var(--mute)}.sp-meta b{color:#5ed39a}
+.spot p{margin:12px 0 0;color:#d6d6d6;line-height:1.6;max-width:68ch}
+.sp-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.sp-chips span{font:500 12px/1 var(--f-mono);padding:6px 9px;border-radius:4px;background:#ffffff0d;border:1px solid #ffffff1a;color:#ddd}
+.sp-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.sp-links a,.sp-links button{font:600 13px/1 var(--f-body);padding:9px 13px;border-radius:4px;border:1px solid #ffffff33;background:#ffffff0d;color:#fff;text-decoration:none;cursor:pointer}
+.sp-links a:hover,.sp-links button:hover{background:#ffffff1f}
+.sp-links .sp-live{background:#fff;color:#000;border-color:#fff}.sp-links .sp-live:hover{background:#ddd}
+.sp-side h4{margin:4px 0 8px;font:600 12px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute)}
+.sp-commits{list-style:none;margin:0;padding:0;border-top:1px solid var(--edge)}
+.sp-commits li{border-bottom:1px solid var(--edge)}
+.sp-commits a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:9px 2px;color:#ddd;text-decoration:none;font-size:13px}
+.sp-commits a span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sp-commits small{color:var(--mute);font-size:11.5px}
+.sp-commits a:hover{background:#ffffff08}.sp-wait{padding:10px 2px;color:var(--mute);font-size:13px}.sp-wait a{color:var(--p)}
 .flow-hint{text-align:center;color:var(--mute);font-size:12px;margin-top:8px;padding-inline:var(--gut);font-family:var(--f-mono)}
 @media (max-width:620px){.flow-hint{font-size:11px}.flow{height:clamp(260px,62vw,340px)}}
 
@@ -402,7 +423,6 @@ button.chip{border:0;cursor:pointer}button.chip:hover{background:#ffffff26}butto
         <button type="button" class="mi" role="menuitem" data-who><span class="mi-ic" aria-hidden="true">✎</span>Manage profiles</button>
         <button type="button" class="mi" role="menuitem" data-open="contact"><span class="mi-ic" aria-hidden="true">✉</span>Contact me</button>
         <a class="mi" role="menuitem" href="https://www.linkedin.com/in/mohammad-azam" target="_blank" rel="noopener"><span class="mi-ic" aria-hidden="true">in</span>LinkedIn</a>
-        <a class="mi" role="menuitem" href="assets/Mohammad_Azam_Resume.pdf" download="Mohammad_Azam_Resume.pdf"><span class="mi-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg></span>Download resume</a>
         <div class="menu-foot">Viewing as <b id="acct-now">Recruiter</b></div>
       </div>
     </div>
@@ -416,7 +436,6 @@ button.chip{border:0;cursor:pointer}button.chip:hover{background:#ffffff26}butto
       <div class="btns">
         <button class="b play" type="button" data-open="s4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>Play resume</button>
         <a class="b more" href="https://www.linkedin.com/in/mohammad-azam" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5v.5"/></svg>LinkedIn</a>
-        <a class="b more" href="assets/Mohammad_Azam_Resume.pdf" download="Mohammad_Azam_Resume.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg>Resume</a>
       </div>
     </div>
   </header>
@@ -706,7 +725,7 @@ function buildRows(pid){
     seasons:()=>rail('seasons','Experience','2021 – now',['s4','s2','s1'].map(k=>tile(k,{note:SEASONS[k].when})).join(''))
   };
   $('#rows').innerHTML=p.order.map(r=>R[r]()).join('');
-  initFlow(); tiltOn($('#rows')); loadGitHub();
+  initFlow(); renderSpot(FLOW[0]); tiltOn($('#rows')); loadGitHub();
   $$('.rw').forEach(w=>{const r=$('.rail',w);
     $('.arrow.l',w).onclick=()=>r.scrollBy({left:-r.clientWidth*.85,behavior:reduce?'auto':'smooth'});
     $('.arrow.r',w).onclick=()=>r.scrollBy({left:r.clientWidth*.85,behavior:reduce?'auto':'smooth'});});
@@ -928,8 +947,24 @@ function flowRow(){
   return `<section class="row" id="row-projects"><h2>Projects <small>built end to end</small></h2>
     <div class="flow" id="flow" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Projects. Use the left and right arrow keys to browse."><div class="flow-stage">${cards}</div></div>
     <div class="flow-ui"><button class="fnav" type="button" id="flow-prev" aria-label="Previous project">‹</button><div class="dots" id="flow-dots">${FLOW.map((k,i)=>`<button type="button" data-go-i="${i}" aria-label="${PROJ[k].title}"></button>`).join('')}</div><button class="fnav" type="button" id="flow-next" aria-label="Next project">›</button></div>
-    <div class="flow-hint">drag, swipe or use ← → · click the front card to open it</div></section>`;
+    <div class="flow-hint">drag, swipe or use ← → · click the front card to open it</div><div class="spot" id="spot" aria-live="polite"></div></section>`;
 }
+function renderSpot(k){const el=$('#spot');if(!el)return;const p=PROJ[k];if(!p)return;
+  const esc=t=>String(t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const full=p.repo?p.repo.replace('https://github.com/',''):'';
+  const chips=(p.cast||'').split(/,\s*/).filter(Boolean).map(t=>`<span>${esc(t)}</span>`).join('');
+  const links=[p.live?`<a class="sp-live" href="${p.live}" target="_blank" rel="noopener">Live 3D explorer</a>`:'',p.repo?`<a href="${p.repo}" target="_blank" rel="noopener">Source code</a>`:'',p.docs?`<a href="${p.docs}" target="_blank" rel="noopener">Architecture notes</a>`:'',`<button type="button" class="sp-open" data-open="${k}">Full details</button>`].join('');
+  el.classList.remove('in');void el.offsetWidth;
+  el.innerHTML=`<div class="sp-main"><div class="sp-top"><h3>${esc(p.title)}</h3>${p.status&&String(p.status).toLowerCase()!==String(p.stat||'').toLowerCase()?`<span class="sp-stat">${esc(p.status)}</span>`:''}</div>
+    <div class="sp-meta">${p.stat?`<b>${esc(p.stat)}</b>`:''}<span>${esc(p.year)}</span><span>${esc(p.genre)}</span></div>
+    <p>${esc(p.desc)}</p><div class="sp-chips">${chips}</div><div class="sp-links">${links}</div></div>
+    <div class="sp-side"><h4>${full?'Latest commits':'Source'}</h4><ol class="sp-commits">${full?'<li class="sp-wait">Loading…</li>':'<li class="sp-wait">Code not public</li>'}</ol></div>`;
+  el.classList.add('in');
+  if(!full)return;
+  const ago=t=>{const s=(Date.now()-new Date(t))/1000;return s<3600?Math.max(1,Math.round(s/60))+' min ago':s<86400?Math.round(s/3600)+' h ago':Math.round(s/86400)+' d ago';};
+  ghJSON(`https://api.github.com/repos/${full}/commits?per_page=4`).then(l=>{if($('#spot')!==el||!el.innerHTML.includes(esc(p.title)))return;
+    const ol=$('.sp-commits',el);ol.innerHTML=(Array.isArray(l)?l:[]).map(c=>`<li><a href="${p.repo}/commit/${c.sha}" target="_blank" rel="noopener"><span>${esc(c.commit.message.split('\n')[0])}</span><small>${ago(c.commit.author.date)}</small></a></li>`).join('')||'<li class="sp-wait">No commits yet</li>';})
+  .catch(()=>{const ol=$('.sp-commits',el);if(ol)ol.innerHTML=`<li class="sp-wait"><a href="${p.repo}/commits" target="_blank" rel="noopener">See commits on GitHub</a></li>`;});}
 function initFlow(){
   const flow=$('#flow'); if(!flow) return;
   const cards=$$('.fcard',flow), dots=$$('#flow-dots button'); let idx=0, drag=null, moved=false;
@@ -940,7 +975,7 @@ function initFlow(){
       c.tabIndex=Math.round(o)===0?0:-1;});
     dots.forEach((d,i)=>d.setAttribute('aria-current',String(i===idx)));
   }
-  const go=i=>{idx=(i+cards.length)%cards.length;layout();};
+  const go=i=>{const was=idx;idx=(i+cards.length)%cards.length;layout();if(idx!==was)renderSpot(FLOW[idx]);};
   $('#flow-prev').onclick=()=>go(idx-1); $('#flow-next').onclick=()=>go(idx+1);
   dots.forEach(d=>d.onclick=()=>go(+d.dataset.goI));
   flow.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();go(idx-1);}else if(e.key==='ArrowRight'){e.preventDefault();go(idx+1);}else if(e.key==='Enter'&&e.target===flow){openModal(FLOW[idx],flow);}});
