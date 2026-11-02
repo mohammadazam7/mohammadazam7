@@ -31,12 +31,19 @@ Computing (AI)** from the University of Windsor.
 an interactive 3D explorer, built in React and three.js, for the analytics produced by the
 NYC taxi data lake.
 
+**Business intelligence & analytics** *(in progress, November to December 2026)*
+
+| Project | What it is | Stack |
+|---|---|---|
+| [cloud-support-bi](https://github.com/mohammadazam7/cloud-support-bi) | Single source of truth for a cloud support organization: dbt star schema, governed metrics (response time, SLA attainment, backlog, CSAT), Looker dashboards with row-level access, and an automated weekly leadership report | SQL · BigQuery SQL · dbt · Looker · Python |
+| [cloud-finops-analytics](https://github.com/mohammadazam7/cloud-finops-analytics) | Cloud cost analytics on FOCUS billing data: cost models, spend forecasting with backtests, anomaly detection with root cause, and commitment savings planning | SQL · BigQuery SQL · dbt · Python · forecasting |
+
 **Data engineering**
 
 | Project | What it is | Stack |
 |---|---|---|
 | [nyc-taxi-data-lake](https://github.com/mohammadazam7/nyc-taxi-data-lake) | S3 data lake for NYC TLC trips: idempotent ingest, PySpark cleaning with quarantine, Redshift star schema, data-quality alerts, Terraform, and a [live 3D explorer](https://mohammadazam7.github.io/nyc-taxi-data-lake/) | Python · PySpark · Glue · Athena · Redshift · Terraform · React · three.js |
-| [ecommerce-data-ai-platform](https://github.com/mohammadazam7/ecommerce-data-ai-platform) | End-to-end e-commerce platform: ETL, SQL analytics and dashboards, ML models for prediction | Python · SQL · scikit-learn |
+| [ecommerce-data-ai-platform](https://github.com/mohammadazam7/ecommerce-data-ai-platform) | *In progress.* Commerce data and ML platform on the public Olist marketplace data: data contracts, dbt marts, orchestration, customer lifetime value, delivery-delay analysis, ML models and experimentation | Python · SQL · dbt · scikit-learn · MLflow |
 
 **Machine learning & AI**
 
@@ -45,8 +52,8 @@ NYC taxi data lake.
 | [ai_multimodal_assistant](https://github.com/mohammadazam7/ai_multimodal_assistant) | Real-time object detection on live camera feeds with multi-stream batching, metrics and Kubernetes autoscaling ([demo video](https://github.com/mohammadazam7/ai_multimodal_assistant/blob/main/docs/demo/demo.mp4)) | PyTorch · FastAPI · React · Kubernetes |
 | [rag-eval-platform](https://github.com/mohammadazam7/rag-eval-platform) | Retrieval-augmented QA with citations and an evaluation suite for recall, faithfulness and hallucination rate | Python · embeddings · BM25 · FastAPI |
 | [recsys-two-tower](https://github.com/mohammadazam7/recsys-two-tower) | Two-tower retrieval and ranking recommender with ANN search and offline metrics | PyTorch · FAISS · FastAPI |
-| [tiny-llm](https://github.com/mohammadazam7/tiny-llm) | GPT-style language model with its own tokenizer and training pipeline, plus model-size vs. loss experiments | PyTorch |
-| [llm-inference-server](https://github.com/mohammadazam7/llm-inference-server) | LLM serving with continuous batching, paged KV cache, INT8 quantization and streaming; serves tiny-llm checkpoints | Python · PyTorch |
+| [tiny-llm](https://github.com/mohammadazam7/tiny-llm) | *Starts Nov 16.* GPT-style language model with its own tokenizer and training pipeline, plus model-size vs. loss experiments | PyTorch |
+| [llm-inference-server](https://github.com/mohammadazam7/llm-inference-server) | *Starts Nov 15.* LLM serving with continuous batching, paged KV cache, INT8 quantization and streaming; serves tiny-llm checkpoints | Python · PyTorch |
 
 **Full-stack**
 
@@ -61,7 +68,7 @@ NYC taxi data lake.
 <br>Previously Database & BI Co-op, Jan to Aug 2026
 - Built Python and SQL pipelines that load 5 source systems (~50K rows/day) into reporting tables, saving 10 hours a week
 - Added validation that caught 100+ data errors before they reached 4 downstream teams
-- Delivered Power BI reporting for 13 plants, cutting turnaround from 2 days to 2 hours
+- Delivered Power BI reporting for multiple plants, cutting turnaround from 2 days to 2 hours
 
 **Data & Software Engineer** · Konarak Global Services · India · *Nov 2021 to Nov 2024*
 - Built Python, C#/.NET and Java services and REST APIs for 3 production client applications
