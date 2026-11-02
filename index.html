@@ -476,7 +476,7 @@ const G = {
 const T = {
   experience:{t:'Experience',sub:'3 seasons · 2021 to now',c1:'#f5a524',c2:'#3a2508',g:'timeline',ln:'Data engineering, analytics, ML and production software.',open:'s4'},
   skills:{t:'Skills',sub:'40+ skills · 7 genres',c1:'#36c2c9',c2:'#0b2b2e',g:'hex',ln:'Python, SQL, PySpark, AWS, Power BI, C#/.NET and more.'},
-  projects:{t:'Projects',sub:'6 builds · end to end',c1:'#9a7cff',c2:'#1e1638',g:'cube',ln:'A data lake, ML systems and two full-stack apps.'},
+  projects:{t:'Projects',sub:'8 builds · end to end',c1:'#9a7cff',c2:'#1e1638',g:'cube',ln:'A data lake, BI and analytics systems, ML systems and two full-stack apps.'},
   education:{t:'Education',sub:'MAC, AI stream',c1:'#5ed39a',c2:'#0f2d1f',g:'cap',ln:'Master of Applied Computing, University of Windsor.'},
   contact:{t:'Contact Me',sub:'email · linkedin · github',c1:'#e86fa8',c2:'#33122a',g:'mail',ln:'The fastest way to start a conversation.'},
   contactbg:{t:'Contact Me',sub:'',c1:'#e86fa8',c2:'#33122a',g:'mail',ln:''},
@@ -484,6 +484,8 @@ const T = {
   nyc:{t:'NYC Taxi Data Lake',sub:'AWS · PySpark · 2026',c1:'#f5a524',c2:'#2a1c08',g:'lake',ln:'~3M rows a month into a Redshift star schema.'},
   vision:{t:'AI Multimodal Assistant',sub:'PyTorch · k8s · 2025',c1:'#36c2c9',c2:'#08242a',g:'vision',ln:'Live object detection in under 60 ms.'},
   rag:{t:'RAG Evaluation Platform',sub:'Retrieval · evaluation · 2026',c1:'#e86fa8',c2:'#33122a',g:'term',ln:'Answers with citations, measured by an evaluation harness.'},
+  csbi:{t:'Cloud Support BI',sub:'dbt · BigQuery SQL · Looker · 2026',c1:'#4f8df5',c2:'#0c1a33',g:'timeline',ln:'One trusted set of support metrics, dashboards and reports.'},
+  finops:{t:'Cloud FinOps Analytics',sub:'dbt · forecasting · FOCUS · 2026',c1:'#f0c040',c2:'#2e2508',g:'cards',ln:'Where cloud spend goes, where it is heading, and how to cut it.'},
   recsys:{t:'Two-Tower Recommender',sub:'PyTorch · FAISS · 2026',c1:'#5ed39a',c2:'#0f2d1f',g:'hex',ln:'Retrieval and ranking, evaluated on a temporal holdout.'},
   dental:{t:'Dental Inventory System',sub:'Django · React · 2025',c1:'#5ed39a',c2:'#0f2d1f',g:'cube',ln:'Stock tracking and reorder alerts for clinic staff.'},
   credify:{t:'Credify',sub:'Spring Boot · React · 2025',c1:'#9a7cff',c2:'#1a1433',g:'cards',ln:'Compare credit cards across Canadian and U.S. banks.'},
@@ -547,12 +549,26 @@ PROJ.recsys={repo:'https://github.com/mohammadazam7/recsys-two-tower',status:'In
     desc:'A two-stage recommender: a two-tower model retrieves candidates from an approximate nearest neighbour index and a ranking model orders them, each stage evaluated offline on a temporal holdout and served behind FastAPI.',
   stat:'in development',
   eps:[['Split','Each user\'s latest ratings are held out so evaluation never sees the future.','implemented'],['Retrieve','User and item towers learn embeddings for nearest neighbour search.','next'],['Rank','A ranking model reorders the retrieved candidates.','next'],['Serve','FastAPI returns top-k recommendations per user.','next']]};
-const PKEYS=['nyc','rag','vision','recsys','credify','dental'];
+PROJ.csbi={repo:'https://github.com/mohammadazam7/cloud-support-bi',status:'In development · v1.0 Dec 4, 2026',title:'Cloud Support BI',year:'Nov 2026 – Present',genre:'Business intelligence',cast:'SQL, BigQuery SQL, dbt, DuckDB, Looker (LookML), Python, statistical modeling, GitHub Actions',
+  why:'A cloud support team handles thousands of customer cases, but different teams often calculate the same numbers differently, such as how fast cases are answered or how many miss their deadline. Leaders end up arguing about whose number is right instead of fixing the problem.',
+  what:'One trusted source of truth for support data: case records cleaned and organized into tested reporting tables, every key metric defined once (response time, resolution time, SLA attainment, backlog, customer satisfaction, escalations), dashboards built on those definitions, and a weekly leadership report that builds itself. On top: a case volume forecast, an early warning for cases likely to escalate, and alerts when SLA misses spike.',
+  result:'In development, finishing Dec 4, 2026. The project foundation is in place; the data models come next. It uses a realistic synthetic data set, since real support data is never public, and every number shown will be measured on that data and labelled as such.',
+  desc:'Single-source-of-truth analytics for a cloud support organization: a dbt star schema in BigQuery SQL (tested on DuckDB in CI), a governed metric layer, LookML dashboards with row-level access, an automated weekly leadership report, and forecasting, escalation-risk and anomaly models.',
+  stat:'in development',
+  eps:[['Model','Raw case and event data is cleaned and organized by dbt into a tested star schema.','next'],['Define','Each support metric is defined once and documented, so every report agrees.','planned'],['Show','Looker dashboards and a 3D command center read from those definitions, with access controls.','planned'],['Report','A weekly leadership report is built and published automatically.','planned'],['Predict','Forecasts case volume and flags cases likely to escalate before they do.','planned']]};
+PROJ.finops={repo:'https://github.com/mohammadazam7/cloud-finops-analytics',status:'In development · v1.0 Dec 11, 2026',title:'Cloud FinOps Analytics',year:'Nov 2026 – Present',genre:'Business intelligence',cast:'SQL, BigQuery SQL, dbt, Python, forecasting, anomaly detection, optimization, Looker (LookML)',
+  why:'Companies spend millions on cloud services and are often surprised by the bill. They need to know where the money goes, whether next month will cost more, and which savings options, such as committing to a set amount of usage up front, are worth it.',
+  what:'Cost and usage analytics built on the industry-standard FOCUS billing format: billing data organized into tested reporting tables, clear cost metrics, a spend forecast for each service, alerts that trace any spike back to the service, account or region that caused it, a planner that recommends how much usage to commit to and what it saves, and an account-health view that shows which customers are growing or shrinking.',
+  result:'In development, finishing Dec 11, 2026. It starts from the FinOps Foundation sample billing data, extended with clearly labelled synthetic history. Savings and forecast accuracy will be published only once measured.',
+  desc:'Cloud cost and consumption analytics on FOCUS billing data: dbt models in BigQuery SQL, governed cost metrics, per-service spend forecasting with backtests, anomaly detection with root-cause drill-down, commitment planning as an optimization, and account health and churn-risk scoring.',
+  stat:'starts Nov 2, 2026',
+  eps:[['Load','FOCUS billing data is loaded and checked against the specification.','next'],['Model','dbt organizes cost by service, account, region and SKU into tested tables.','planned'],['Forecast','Spend is forecast per service, with accuracy measured on past months.','planned'],['Detect','Spikes are flagged and traced to the service, account or region behind them.','planned'],['Save','A planner recommends a commitment level, with the expected savings and the risk.','planned']]};
+const PKEYS=['nyc','csbi','finops','rag','vision','recsys','credify','dental'];
 const SKILLS = [
   ['Languages & frameworks',['Python','SQL','C++','C#/.NET','Java','JavaScript','TypeScript','Django','Spring Boot','React']],
   ['Data engineering',['ETL / ELT','PySpark','dbt','Airflow','Kafka','Star schema modeling']],
-  ['Data platforms',['Snowflake','Databricks','Redshift','PostgreSQL','SQL Server','MongoDB']],
-  ['Analytics & BI',['Power BI','Tableau','Pandas','Statistical analysis','KPI dashboards']],
+  ['Data platforms',['BigQuery','Snowflake','Databricks','Redshift','DuckDB','PostgreSQL','SQL Server','MongoDB']],
+  ['Analytics & BI',['Power BI','Looker (LookML)','Tableau','Pandas','Statistical analysis','Forecasting','KPI dashboards','Metric design']],
   ['ML & AI',['scikit-learn','TensorFlow','PyTorch','Feature engineering','LLM APIs','RAG']],
   ['Cloud & DevOps',['AWS','S3','Glue','Lambda','Azure Data Factory','Docker','Kubernetes','Git','CI/CD']],
   ['Soft skills',['Communication','Collaboration','Ownership','Problem-solving','Curiosity']]];
@@ -756,12 +772,12 @@ const V={
       :p.img?`<figure class="pm"><a href="${p.img}" target="_blank" rel="noopener"><img src="${p.img}" alt="${p.title} architecture diagram" loading="lazy"></a><figcaption>Architecture</figcaption></figure>`:'';
     const links=`<div class="plinks">${p.live?`<a href="${p.live}" target="_blank" rel="noopener">Live 3D explorer</a>`:''}${p.repo?`<a href="${p.repo}" target="_blank" rel="noopener">Source code</a>`:''}${p.docs?`<a href="${p.docs}" target="_blank" rel="noopener">Architecture notes</a>`:''}${p.repo?`<a href="${p.repo}/commits/main" target="_blank" rel="noopener">Commit history</a>`:''}</div>`;
     return banner(k,p.title,playBtn(p.repo?'View on GitHub':'GitHub profile',`data-href="${p.repo||'https://github.com/mohammadazam7'}"`))+
-    `<div class="m-body">${media}<div class="m-cols"><div><div class="m-meta"><span class="match">${p.stat}</span><span>${p.year}</span><span class="box">${p.genre}</span>${p.status?`<span class="pstat ${p.status==='Complete'?'done':'wip'}">${p.status}</span>`:''}</div>${p.why?`<dl class="plain"><dt>The problem</dt><dd>${p.why}</dd><dt>What I built</dt><dd>${p.what}</dd><dt>The result</dt><dd>${p.result}</dd></dl><h4 class="tech-h">Technical summary</h4>`:''}<p>${p.desc}</p>${links}</div>
+    `<div class="m-body">${media}<div class="m-cols"><div><div class="m-meta"><span class="match">${p.stat}</span><span>${p.year}</span><span class="box">${p.genre}</span>${p.status?`<span class="pstat ${p.status==='Complete'?'done':'wip'}">${p.status}</span>`:''}</div>${p.why?`<dl class="plain"><dt>The problem</dt><dd>${p.why}</dd><dt>${/develop/i.test(p.status||'')?'What I am building':'What I built'}</dt><dd>${p.what}</dd><dt>${/develop/i.test(p.status||'')?'Where it stands':'The result'}</dt><dd>${p.result}</dd></dl><h4 class="tech-h">Technical summary</h4>`:''}<p>${p.desc}</p>${links}</div>
      <div class="side"><div><b>Cast:</b> <span>${p.cast}</span></div><div><b>Genre:</b> <span>${p.genre}</span></div></div></div>
      <div><div class="ep-head"><h3>How it works</h3></div>${eps(p.eps)}</div>
      <div><div class="ep-head"><h3>More like this</h3></div><div class="mini-tiles" style="margin-top:14px">${PKEYS.filter(x=>x!==k).map(x=>tile(x)).join('')}</div></div></div>`;},
   skills(){return banner('skills','Skills')+`<div class="m-body"><div class="m-meta"><span class="match">${SKILLS.reduce((n,[,l])=>n+l.length,0)} skills</span><span class="box">${SKILLS.length} genres</span><span>Highlighted: the six I use most days</span></div><div class="globe-box"><div class="orb" id="orb" role="group" aria-label="Skills globe. Drag to spin it, click a skill to find it in the list."></div><div class="globe-note"><p><b style="color:#fff">Drag the globe</b> to spin it.</p><p>Click any skill to see the jobs and projects where I used it. The six filled bubbles are the ones I use most days.</p></div></div><div class="used" id="used" aria-live="polite"><p>Select any skill to see where I used it.</p></div><div class="genres">${SKILLS.map(([g,l])=>`<div class="genre"><h4>${g}</h4><div class="chips">${l.map(s=>`<button type="button" class="chip${CORE.includes(s)?' core':''}" data-skill="${s}">${s}</button>`).join('')}</div></div>`).join('')}</div></div>`;},
-  projects(){return banner('projects','Projects')+`<div class="m-body"><p style="margin:0;color:#ccc">Six builds, each one end to end. Pick one to see the architecture and how it works.</p><div class="mini-tiles">${PKEYS.map(x=>tile(x)).join('')}</div></div>`;},
+  projects(){return banner('projects','Projects')+`<div class="m-body"><p style="margin:0;color:#ccc">Eight builds, each one end to end. Pick one to see the architecture and how it works.</p><div class="mini-tiles">${PKEYS.map(x=>tile(x)).join('')}</div></div>`;},
   education(){return banner('education','Education')+`<div class="m-body">${eps([
       ['Master of Applied Computing, AI stream','University of Windsor, Windsor, ON.','Aug 2026'],
       ['Demo Day, 2nd place','AI-driven project recognized by industry judges for innovation and technical excellence.','Apr 2025'],
@@ -964,7 +980,7 @@ function renderSpot(k){const el=$('#spot');if(!el)return;const p=PROJ[k];if(!p)r
   el.classList.remove('in');void el.offsetWidth;
   el.innerHTML=`<div class="sp-main"><div class="sp-top"><h3>${esc(p.title)}</h3>${p.status&&String(p.status).toLowerCase()!==String(p.stat||'').toLowerCase()?`<span class="sp-stat">${esc(p.status)}</span>`:''}</div>
     <div class="sp-meta">${p.stat?`<b>${esc(p.stat)}</b>`:''}<span>${esc(p.year)}</span><span>${esc(p.genre)}</span></div>
-    ${p.why?`<dl class="plain"><dt>The problem</dt><dd>${esc(p.why)}</dd><dt>What I built</dt><dd>${esc(p.what)}</dd><dt>The result</dt><dd>${esc(p.result)}</dd></dl><h4 class="tech-h">Technical summary</h4>`:''}<p>${esc(p.desc)}</p><div class="sp-chips">${chips}</div><div class="sp-links">${links}</div></div>
+    ${p.why?`<dl class="plain"><dt>The problem</dt><dd>${esc(p.why)}</dd><dt>${/develop/i.test(p.status||'')?'What I am building':'What I built'}</dt><dd>${esc(p.what)}</dd><dt>${/develop/i.test(p.status||'')?'Where it stands':'The result'}</dt><dd>${esc(p.result)}</dd></dl><h4 class="tech-h">Technical summary</h4>`:''}<p>${esc(p.desc)}</p><div class="sp-chips">${chips}</div><div class="sp-links">${links}</div></div>
     <div class="sp-side"><h4>${full?'Latest commits':'Source'}</h4><ol class="sp-commits">${full?'<li class="sp-wait">Loading…</li>':'<li class="sp-wait">Code not public</li>'}</ol></div>`;
   el.classList.add('in');
   if(!full)return;
