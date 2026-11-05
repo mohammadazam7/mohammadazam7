@@ -3,8 +3,8 @@
 Data & ML engineer based in Mississauga, ON. I build the pipelines that make data
 trustworthy and the systems that put models into production.
 
-Currently a **Data Engineer, Analytics & BI at FGF Brands**, where I run reporting for
-13 manufacturing plants. Before that I spent three years shipping data, ML and backend
+Currently a **Data Engineer, Analytics & Business Intelligence at FGF Brands**, where I
+run reporting for multiple manufacturing plants. Before that I spent three years shipping data, ML and backend
 services for client products at Konarak Global Services. I hold a **Master of Applied
 Computing (AI)** from the University of Windsor.
 
@@ -64,13 +64,13 @@ NYC taxi data lake.
 
 ### Experience
 
-**Data Engineer, Analytics & BI** · FGF Brands · Toronto, ON · *Sep 2026 to present*
+**Data Engineer, Analytics & Business Intelligence** · FGF Brands · Toronto, ON · *Sep 2026 to present*
 <br>Previously Database & BI Co-op, Jan to Aug 2026
 - Built Python and SQL pipelines that load 5 source systems (~50K rows/day) into reporting tables, saving 10 hours a week
 - Added validation that caught 100+ data errors before they reached 4 downstream teams
 - Delivered Power BI reporting for multiple plants, cutting turnaround from 2 days to 2 hours
 
-**Data & Software Engineer** · Konarak Global Services · India · *Nov 2021 to Nov 2024*
+**Data and Business Intelligence Engineer** · Konarak Global Services · India · *Nov 2021 to Nov 2024*
 - Built Python, C#/.NET and Java services and REST APIs for 3 production client applications
 - Raised model accuracy from 82% to 90% through feature engineering (TensorFlow, scikit-learn)
 - Set up Azure DevOps CI/CD with 150 automated tests per PR, taking releases from 1 day to under 1 hour
