@@ -727,7 +727,7 @@ function loadGitHub(){const heat=$('#gh-heat'),feed=$('#gh-feed');if(!heat)retur
     const total=Object.values(counts).reduce((a,b)=>a+b,0);
     heat.innerHTML=`<div class="gh-grid">${cells}</div><div class="gh-cap"><b>${total}</b> commits pushed in the last 12 weeks <a href="https://github.com/mohammadazam7" target="_blank" rel="noopener">Full graph on GitHub</a></div>`;
     const ago=t=>{const s=(Date.now()-new Date(t))/1000;return s<3600?Math.max(1,Math.round(s/60))+' min ago':s<86400?Math.round(s/3600)+' h ago':Math.round(s/86400)+' d ago';};
-    const repos=[...new Set(pushes.map(e=>e.repo.name))].slice(0,6);
+    const repos=[...new Set(pushes.map(e=>e.repo.name))].filter(r=>r!=='mohammadazam7/mohammadazam7').slice(0,6);
     Promise.all(repos.map(r=>ghJSON(`https://api.github.com/repos/${r}/commits?per_page=4`).catch(()=>[])))
       .then(lists=>{const items=[];lists.forEach((l,i)=>(Array.isArray(l)?l:[]).forEach(c=>items.push({repo:repos[i].split('/')[1],msg:c.commit.message.split('\n')[0],sha:c.sha,at:c.commit.author.date})));
         items.sort((a,b)=>new Date(b.at)-new Date(a.at));
