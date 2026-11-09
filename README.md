@@ -70,7 +70,7 @@ NYC taxi data lake.
 - Added validation that caught 100+ data errors before they reached 4 downstream teams
 - Delivered Power BI reporting for multiple plants, cutting turnaround from 2 days to 2 hours
 
-**Data and Business Intelligence Engineer** · Konarak Global Services · India · *Nov 2021 to Nov 2024*
+**Data & Software Engineer** · Konarak Global Services · India · *Nov 2021 to Nov 2024*
 - Built Python, C#/.NET and Java services and REST APIs for 3 production client applications
 - Raised model accuracy from 82% to 90% through feature engineering (TensorFlow, scikit-learn)
 - Set up Azure DevOps CI/CD with 150 automated tests per PR, taking releases from 1 day to under 1 hour
